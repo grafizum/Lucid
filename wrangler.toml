@@ -1,0 +1,18 @@
+# lucid.grafizum.com — the site in ./site, served as a Worker with static assets:
+# one Worker, one custom domain, no build step.
+#
+#   npx wrangler deploy        # uploads ./site, creates the DNS record + cert
+#
+# Nothing here is uploaded with the site: only ./site is served.
+
+name = "lucid-legal"
+compatibility_date = "2026-11-04"
+workers_dev = true
+
+[assets]
+directory = "./site"
+not_found_handling = "404-page"
+
+[[routes]]
+pattern = "lucid.grafizum.com"
+custom_domain = true

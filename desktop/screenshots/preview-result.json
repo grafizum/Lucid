@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-26T13:12:47.860Z",
+    "surface": "demo/whatsapp.html (Spanish conversation)",
+    "lens": {
+      "x": 660,
+      "y": 330,
+      "size": 74
+    },
+    "sight": {
+      "x": 387,
+      "y": 418,
+      "width": 620,
+      "height": 240
+    },
+    "ocr": {
+      "confidence": 92,
+      "chars": 184,
+      "engine": "tesseract.js (local)"
+    },
+    "translation": {
+      "provider": "MyMemory",
+      "detected": "es",
+      "target": "en"
+    },
+    "output": "screenshots/whatsapp-live-preview.png",
+    "size": {
+      "width": 1442,
+      "height": 902
+    }
+  },
+  "payload": {
+    "source": "HOY\nBuenos días #: ¿Ya desayunaste? 09:12\nAyer olvidé las llaves en tu casa, ¿las encontraste? 09:13\ng\nEl paquete llegó esta mañana. ¿Puedes pasar a recogerlo antes de las siete? 09:41",
+    "translated": "TODAY\nGood morning #: Have you had breakfast yet? 09:12\nYesterday I forgot the keys at your house, did you find them? 09:13\ng\nThe package arrived this morning. Can you pick it up before seven? 09:41",
+    "detected": "es",
+    "detectedName": "Spanish",
+    "target": "en",
+    "targetName": "English",
+    "provider": "MyMemory",
+    "confidence": 92,
+    "ms": 4001,
+    "sameAsSource": false
+  }
+}

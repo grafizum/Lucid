@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The row that holds the control being pointed at: a wash only, because the
+     ring outside it draws the outline. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#24D3A582" />
+    <corners android:radius="9dp" />
+</shape>

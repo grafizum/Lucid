@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+    />
+    <title>Lucid translation</title>
+    <link rel="stylesheet" href="ui.css" />
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <div class="core" id="core">
+        <div class="head">
+          <div class="head__left">
+            <span class="status"><span class="status__dot"></span><span id="statusText">Ready</span></span>
+          </div>
+          <div class="head__right">
+            <button class="auto" id="autoBtn" title="Read continuously (uses one still frame per pass)">
+              <span class="auto__track"><span class="auto__knob"></span></span>
+              <span>Live</span>
+            </button>
+            <button class="icon-btn" id="closeBtn" title="Hide (Esc)">
+              <svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="langs" id="langs" hidden>
+          <span class="chip" id="srcChip"><span class="dot"></span><span id="srcName">Detecting</span></span>
+          <span class="arrow">→</span>
+          <span class="chip chip--accent" id="dstChip"><span id="dstName">English</span></span>
+        </div>
+
+        <div class="body" id="body">
+          <!-- states are rendered here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="panel.js"></script>
+  </body>
+</html>

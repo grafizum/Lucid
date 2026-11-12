@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stands in for the rows above and below, so the drawing reads as a list. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#12FCF8F1" />
+    <corners android:radius="6dp" />
+</shape>

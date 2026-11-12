@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The round well that holds the cross, set beside the slide. The knob on the
+     slide is paper raised by a shadow; this is its quiet opposite — the page's
+     own cream with the press's shade along the top and a hairline rim, so the
+     pair reads as one soft surface and the CTA keeps the weight.
+
+     One state: pressing it sinks the well by motion (Press.kt) rather than
+     repainting it, which would flash a flat disc under the finger. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/cream_100" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:centerY="0.40"
+                android:endColor="#00191814"
+                android:startColor="#1A191814"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <stroke android:width="1.25dp" android:color="#8CB39D7C" />
+        </shape>
+    </item>
+</layer-list>

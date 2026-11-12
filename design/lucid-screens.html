@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lucid — screens in parchment &amp; charcoal</title>
+<style>
+  @font-face{
+    font-family:"Lucid Sans";
+    src:url("fonts/PlusJakarta.ttf") format("truetype-variations");
+    font-weight:200 800; font-display:block;
+  }
+  @font-face{
+    font-family:"Geist";
+    src:url("fonts/Geist.woff2") format("woff2-variations");
+    font-weight:100 900; font-display:block;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(252,248,241,.05), transparent 62%),
+      #14130F;
+    color:#F8F2E7;
+    font-family:"Lucid Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    /* Plus Jakarta's space is narrow at UI sizes; a touch of word-spacing
+       keeps two-word labels from reading as one. */
+    word-spacing:.06em;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  }
+
+  .stage{width:1460px;margin:0 auto;padding:72px 0 90px}
+
+  .head{display:flex;align-items:flex-end;justify-content:space-between;margin:0 0 44px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:"Geist",sans-serif;font-size:10px;
+    letter-spacing:.26em;text-transform:uppercase;color:#C2B9A6;padding:8px 14px;border-radius:999px;
+    background:rgba(252,248,241,.045);box-shadow:inset 0 0 0 1px rgba(252,248,241,.09)}
+  .eyebrow i{width:5px;height:5px;border-radius:50%;background:#B9825F;display:block}
+  .head h1{margin:20px 0 0;font-size:40px;line-height:1;letter-spacing:-.04em;font-weight:500;color:#FCF8F1}
+  .head h1 em{font-style:normal;color:#D3A582}
+  .head p{margin:14px 0 0;font-size:13.5px;line-height:1.6;color:#A9A08E;max-width:52ch}
+  .stamp{font-family:"Geist",sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#857B6C;text-align:right;line-height:2}
+
+  .phones{display:flex;gap:56px;justify-content:center}
+
+  /* ── device ───────────────────────────────────────────────────── */
+  .device{
+    padding:10px;border-radius:54px;background:#0D0C09;
+    box-shadow:inset 0 0 0 1px rgba(252,248,241,.08), 0 80px 130px -70px rgba(0,0,0,.95);
+    flex:none;
+  }
+  .screen{width:412px;height:892px;border-radius:45px;overflow:hidden;position:relative}
+
+  .caption{margin-top:22px;display:flex;align-items:baseline;gap:10px;justify-content:center}
+  .caption b{font-size:12.5px;font-weight:500;color:#D8CFBC}
+  .caption span{font-family:"Geist",sans-serif;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#857B6C}
+
+  /* ── status bar ───────────────────────────────────────────────── */
+  .status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 26px 0 30px}
+  .status .t{font-family:"Geist",sans-serif;font-size:12px;font-weight:500;letter-spacing:.02em}
+  .status .icons{display:flex;align-items:center;gap:6px}
+  .status .bars{display:flex;align-items:flex-end;gap:2px;height:9px}
+  .status .bars i{width:2px;border-radius:1px;display:block}
+  .status .wifi{width:11px;height:8px;border-radius:1px}
+  .status .batt{width:17px;height:9px;border-radius:2.5px;padding:1.5px}
+  .status .batt i{display:block;height:100%;width:70%;border-radius:1.5px}
+
+  /* ── the app, light ───────────────────────────────────────────── */
+  .app{height:848px;padding:0 26px 0;display:flex;flex-direction:column}
+  .light{background:#F8F2E7;color:#191814}
+  .dark{background:#191814;color:#FCF8F1}
+
+  .brandrow{display:flex;align-items:center;gap:10px;margin-top:4px}
+  .mono{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;font-size:14.5px;font-weight:800;letter-spacing:-.03em}
+  .light .mono{background:#191814;color:#FCF8F1;box-shadow:inset 0 1px 0 rgba(252,248,241,.18)}
+  .dark  .mono{background:#FCF8F1;color:#191814;box-shadow:inset 0 1px 0 #fff}
+  .wordmark{font-family:"Geist",sans-serif;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase}
+  .light .wordmark{color:#6A6254}
+  .dark  .wordmark{color:#A9A08E}
+  .lenspill{margin-left:auto;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 11px 0 9px;
+    border-radius:999px;font-family:"Geist",sans-serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
+  .light .lenspill{background:#EBE1CE;color:#6A6254;box-shadow:inset 0 0 0 1px rgba(25,24,20,.05)}
+  .dark  .lenspill{background:#2E2C27;color:#C2B9A6;box-shadow:inset 0 0 0 1px rgba(252,248,241,.07)}
+  .lenspill .d{width:5px;height:5px;border-radius:50%;background:#A69C8C}
+
+  .pill-eyebrow{display:inline-block;margin-top:30px;padding:6px 11px;border-radius:999px;
+    font-family:"Geist",sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;align-self:flex-start}
+  .light .pill-eyebrow{background:#EBE1CE;color:#8A5A3C;box-shadow:inset 0 0 0 1px rgba(25,24,20,.04)}
+  .dark  .pill-eyebrow{background:#2E2C27;color:#D3A582;box-shadow:inset 0 0 0 1px rgba(252,248,241,.06)}
+
+  h2.hero{margin:16px 0 0;font-size:42px;line-height:.96;letter-spacing:-.045em;font-weight:500}
+  /* No negative tracking below 22px: at small sizes Plus Jakarta's space
+     glyph collapses under negative letter-spacing. */
+  .lede{margin:11px 0 0;font-size:13px;line-height:1.52}
+  .light .lede{color:#6A6254}
+  .dark  .lede{color:#A9A08E}
+
+  /* double bezel */
+  .shell{padding:5px;border-radius:26px;margin-top:24px;
+    box-shadow:inset 0 0 0 1px rgba(25,24,20,.06), 0 34px 60px -46px rgba(66,52,32,.7)}
+  .light .shell{background:rgba(205,187,155,.42)}
+  .dark  .shell{background:rgba(252,248,241,.045);box-shadow:inset 0 0 0 1px rgba(252,248,241,.07), 0 40px 70px -50px #000}
+  .core{border-radius:21.5px;overflow:hidden}
+  .light .core{background:#FCF8F1;box-shadow:inset 0 1px 0 #fff}
+  .dark  .core{background:#23221E;box-shadow:inset 0 1px 0 rgba(252,248,241,.06)}
+
+  .step{display:flex;align-items:center;gap:12px;padding:15px 16px}
+  .step .t,.step .s,.setrow .t,.setrow .s{display:block}
+  .step + .step{border-top:1px solid}
+  .light .step + .step{border-color:rgba(25,24,20,.07)}
+  .dark  .step + .step{border-color:rgba(252,248,241,.07)}
+  .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .dot.ok{background:#55603F;box-shadow:0 0 0 3px rgba(85,96,63,.13)}
+  .light .dot.todo{background:#CDBB9B}
+  .dark .dot.todo{background:#6E4630}
+  .step .txt{min-width:0}
+  .step .t{font-size:13px;font-weight:500}
+  .step .s{font-size:11px;margin-top:2px}
+  .light .step .s{color:#857B6C}
+  .dark  .step .s{color:#A9A08E}
+  .act{margin-left:auto;flex:none;height:28px;padding:0 13px;border-radius:999px;display:grid;place-items:center;
+    font-family:"Geist",sans-serif;font-size:10.5px;letter-spacing:.02em}
+  .light .act.ghost{background:#F1E9DA;color:#191814;box-shadow:inset 0 0 0 1px rgba(25,24,20,.05)}
+  .dark  .act.ghost{background:#2E2C27;color:#FCF8F1;box-shadow:inset 0 0 0 1px rgba(252,248,241,.06)}
+  .light .act.done{background:rgba(85,96,63,.10);color:#55603F}
+  .dark  .act.done{background:rgba(179,157,124,.14);color:#D8CFBC}
+
+  .rowlabel{display:flex;align-items:baseline;justify-content:space-between;margin:22px 0 9px}
+  .rowlabel span{font-family:"Geist",sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase}
+  .light .rowlabel span{color:#857B6C}
+  .dark  .rowlabel span{color:#A9A08E}
+  .rowlabel .lg{display:flex;align-items:baseline;gap:8px;text-transform:none;letter-spacing:normal}
+  .rowlabel .lg b{font-size:20px;font-weight:500;letter-spacing:-.03em;text-transform:none}
+  .rowlabel .lg i{font-style:normal;font-size:9.5px}
+  .chev{width:7px;height:7px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;
+    transform:rotate(45deg) translate(-1px,-2px);display:inline-block}
+  .light .rowlabel .lg i{color:#A69C8C}
+  .dark  .rowlabel .lg i{color:#857B6C}
+
+  .setrow{display:flex;align-items:center;gap:12px;padding:15px 16px}
+  .setrow .txt{min-width:0}
+  .setrow + .setrow{border-top:1px solid}
+  .light .setrow + .setrow{border-color:rgba(25,24,20,.07)}
+  .dark  .setrow + .setrow{border-color:rgba(252,248,241,.07)}
+  .setrow .t{font-size:13px;font-weight:500}
+  .setrow .s{font-size:11px;margin-top:2px}
+  .light .setrow .s{color:#857B6C}
+  .dark  .setrow .s{color:#A9A08E}
+
+  .seg{margin-left:auto;display:flex;padding:3px;border-radius:999px;flex:none}
+  .light .seg{background:#F1E9DA;box-shadow:inset 0 0 0 1px rgba(25,24,20,.04)}
+  .dark  .seg{background:#2E2C27;box-shadow:inset 0 0 0 1px rgba(252,248,241,.05)}
+  .seg i{font-style:normal;padding:5px 11px;border-radius:999px;font-family:"Geist",sans-serif;font-size:10px;letter-spacing:.02em}
+  .light .seg i.on{background:#FCF8F1;color:#191814;box-shadow:0 1px 2px rgba(66,52,32,.14), inset 0 0 0 1px rgba(25,24,20,.05)}
+  .dark  .seg i.on{background:#F8F2E7;color:#191814;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+  .light .seg i.off{color:#857B6C}
+  .dark  .seg i.off{color:#A9A08E}
+
+  .cta{margin-top:26px;height:58px;border-radius:999px;display:flex;align-items:center;padding:0 8px 0 22px;
+    font-size:14px;font-weight:500;flex:none}
+  .light .cta{background:#191814;color:#FCF8F1;box-shadow:0 26px 44px -30px rgba(25,24,20,.8), inset 0 1px 0 rgba(252,248,241,.12)}
+  .dark  .cta{background:#F8F2E7;color:#191814;box-shadow:0 30px 50px -34px rgba(0,0,0,.95), inset 0 1px 0 #fff}
+  .cta .knob{margin-left:auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:15px}
+  .light .cta .knob{background:rgba(252,248,241,.13);box-shadow:inset 0 0 0 1px rgba(252,248,241,.14)}
+  .dark  .cta .knob{background:rgba(25,24,20,.08);box-shadow:inset 0 0 0 1px rgba(25,24,20,.08)}
+
+  .statusline{margin-top:14px;text-align:center;font-size:10.5px;line-height:1.45}
+  .homebar{margin:auto auto 10px;width:120px;height:4px;border-radius:999px}
+  .light .homebar{background:rgba(25,24,20,.22)}
+  .dark .homebar{background:rgba(252,248,241,.26)}
+  .light .statusline{color:#A69C8C}
+  .dark  .statusline{color:#857B6C}
+
+  /* ── the lens over a chat ─────────────────────────────────────── */
+  .chat{background:#F3ECDE;height:848px;display:flex;flex-direction:column}
+  .chatbar{display:flex;align-items:center;gap:11px;padding:12px 22px 12px;border-bottom:1px solid rgba(25,24,20,.07)}
+  .chatbar .av{width:31px;height:31px;border-radius:50%;background:#DFD2B8;display:grid;place-items:center;
+    font-size:12px;font-weight:600;color:#6E4630}
+  .chatbar .nm{display:block;font-size:13px;font-weight:500;line-height:1.15}
+  .chatbar .st{display:block;font-size:10px;color:#857B6C;margin-top:2px}
+  .chatbar .ic{margin-left:auto;display:flex;gap:14px;color:#A69C8C;font-size:12px}
+
+  .thread{flex:1;padding:20px 20px 0;display:flex;flex-direction:column;gap:9px}
+  .thread .spacer{flex:1}
+  .day{align-self:center;font-family:"Geist",sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#A69C8C;margin-bottom:6px}
+  .bub{max-width:262px;padding:10px 13px;border-radius:16px;font-size:12.5px;line-height:1.45;color:#191814}
+  .bub.in{background:#FCF8F1;border-bottom-left-radius:5px;box-shadow:0 1px 0 rgba(25,24,20,.04), 0 10px 22px -20px rgba(66,52,32,.6)}
+  .bub.out{align-self:flex-end;background:#DFD2B8;border-bottom-right-radius:5px}
+  .bub .when{display:block;margin-top:5px;font-family:"Geist",sans-serif;font-size:8.5px;color:#A69C8C;text-align:right}
+
+  /* the read line: the wash the lens paints over the words it picked */
+  .readline{position:relative;max-width:300px;margin-top:2px}
+  .readline .bub{max-width:none;padding:10px 13px}
+  .readline .txt{font-size:14px;line-height:1.5;color:#191814;display:inline;
+    background:rgba(179,157,124,.55);box-decoration-break:clone;border-radius:3px;padding:1px 2px}
+  .iris{position:absolute;right:-54px;top:-6px;width:44px;height:44px;border-radius:50%;background:#23221E;
+    display:grid;place-items:center;box-shadow:0 14px 26px -12px rgba(25,24,20,.7), inset 0 1px 0 rgba(252,248,241,.14)}
+  .iris .ring{width:19px;height:19px;border-radius:50%;border:1.6px solid #FCF8F1;display:grid;place-items:center}
+  .iris .ring i{width:5px;height:5px;border-radius:50%;background:#D3A582;display:block}
+
+  /* the translation card — charcoal, over whatever app you are in */
+  .card-wrap{margin:22px 0 0 auto;width:346px;padding:5px;border-radius:23px;
+    background:rgba(46,44,39,.92);box-shadow:inset 0 0 0 1px rgba(252,248,241,.08), 0 40px 70px -40px rgba(20,18,14,.75)}
+  .card{border-radius:18.5px;background:#23221E;padding:14px 15px 13px;
+    box-shadow:inset 0 1px 0 rgba(252,248,241,.07)}
+  .card .top{display:flex;align-items:center;gap:7px}
+  .card .top .d{width:5px;height:5px;border-radius:50%;background:#B9825F}
+  .card .top b{font-family:"Geist",sans-serif;font-size:8.5px;letter-spacing:.22em;font-weight:500;color:#D8CFBC}
+  .card .top .x{margin-left:auto;font-size:11px;color:#857B6C}
+  .chips{display:flex;align-items:center;gap:6px;margin-top:11px}
+  .chips span{font-family:"Geist",sans-serif;font-size:9.5px;padding:4px 8px;border-radius:999px;
+    background:rgba(252,248,241,.07);color:#C2B9A6;box-shadow:inset 0 0 0 1px rgba(252,248,241,.06)}
+  .chips span.hot{background:rgba(164,110,75,.20);color:#D3A582;box-shadow:inset 0 0 0 1px rgba(211,165,130,.18)}
+  .chips i{font-style:normal;font-size:9px;color:#857B6C}
+  .trans{margin:14px 0 0;font-size:16px;line-height:1.34;color:#FCF8F1}
+  .orig{margin:7px 0 0;font-size:11.5px;line-height:1.4;color:#A9A08E}
+  .card .hr{height:1px;background:rgba(252,248,241,.09);margin:12px 0 10px}
+  .card .foot{display:flex;align-items:center}
+  .card .foot .meta{font-family:"Geist",sans-serif;font-size:8.5px;letter-spacing:.06em;color:#857B6C}
+  .card .foot .copy{margin-left:auto;font-family:"Geist",sans-serif;font-size:9.5px;padding:4px 10px;border-radius:999px;
+    background:rgba(252,248,241,.07);color:#E7DCC7;box-shadow:inset 0 0 0 1px rgba(252,248,241,.06)}
+
+  .tilehint{margin:18px 20px 0;display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:14px;
+    background:rgba(25,24,20,.05);font-size:10.5px;color:#6A6254}
+  .tilehint b{font-family:"Geist",sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8A5A3C}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="head">
+    <div>
+      <span class="eyebrow"><i></i>Lucid · interface</span>
+      <h1>The same app, printed on <em>parchment</em></h1>
+      <p>Setup screen, the lens at work over a chat, and the inverse for dark mode. Cream carries
+         the app, charcoal carries the ink — and the translation card, which floats over other
+         people's apps, keeps the dark plate so it never fights the content underneath.</p>
+    </div>
+    <div class="stamp">412 × 892 dp<br>cream · beige · charcoal<br>clay accent</div>
+  </div>
+
+  <div class="phones">
+
+    <!-- ─────────── 1 · setup, cream ─────────── -->
+    <div>
+      <div class="device"><div class="screen light">
+        <div class="status">
+          <span class="t" style="color:#6A6254">16:57</span>
+          <span class="icons">
+            <span class="bars"><i style="height:3px;background:#857B6C"></i><i style="height:5px;background:#857B6C"></i><i style="height:7px;background:#857B6C"></i><i style="height:9px;background:#CDBB9B"></i></span>
+            <span class="wifi" style="background:#857B6C;clip-path:polygon(0 100%,100% 100%,50% 0)"></span>
+            <span class="batt" style="box-shadow:inset 0 0 0 1px #A69C8C"><i style="background:#6A6254"></i></span>
+          </span>
+        </div>
+
+        <div class="app">
+          <div class="brandrow">
+            <span class="mono">A</span>
+            <span class="wordmark">Lucid</span>
+            <span class="lenspill"><span class="d"></span>Lens off</span>
+          </div>
+
+          <span class="pill-eyebrow">Screen lens</span>
+          <h2 class="hero">Lucid</h2>
+          <p class="lede">A floating lens that reads whatever it sits over — in WhatsApp, in a
+            browser, anywhere — and translates it in place.</p>
+
+          <div class="shell"><div class="core">
+            <div class="step">
+              <span class="dot ok"></span>
+              <span class="txt"><span class="t">Float over other apps</span><span class="s">Draw-over-apps permission</span></span>
+              <span class="act done">Allowed</span>
+            </div>
+            <div class="step">
+              <span class="dot ok"></span>
+              <span class="txt"><span class="t">Text access</span><span class="s">Reads the text — no recording</span></span>
+              <span class="act done">On</span>
+            </div>
+            <div class="step">
+              <span class="dot todo"></span>
+              <span class="txt"><span class="t">Look mode</span><span class="s">Optional — for hidden text</span></span>
+              <span class="act ghost">Off</span>
+            </div>
+          </div></div>
+
+          <div class="rowlabel">
+            <span>Translate into</span>
+            <span class="lg"><b>English</b><i class="chev"></i></span>
+          </div>
+
+          <div class="shell" style="margin-top:0"><div class="core">
+            <div class="setrow">
+              <span><span class="t">Auto-translate</span><span class="s">Reads when the lens stops</span></span>
+              <span class="seg"><i class="on">On</i><i class="off">Off</i></span>
+            </div>
+            <div class="setrow">
+              <span><span class="t">Engine</span><span class="s">On-device models, nothing leaves</span></span>
+              <span class="seg"><i class="off">Device</i><i class="on">Online</i></span>
+            </div>
+          </div></div>
+
+          <div class="cta">Start the lens<span class="knob">↗</span></div>
+          <p class="statusline">Two switches, granted once. Nothing is recorded and no frame is ever saved.</p>
+          <div class="homebar"></div>
+        </div>
+      </div></div>
+      <div class="caption"><b>Setup</b><span>cream canvas · beige shell · charcoal ink</span></div>
+    </div>
+
+    <!-- ─────────── 2 · the lens over a chat ─────────── -->
+    <div>
+      <div class="device"><div class="screen">
+        <div class="status" style="background:#F3ECDE">
+          <span class="t" style="color:#6A6254">16:58</span>
+          <span class="icons">
+            <span class="bars"><i style="height:3px;background:#857B6C"></i><i style="height:5px;background:#857B6C"></i><i style="height:7px;background:#857B6C"></i><i style="height:9px;background:#CDBB9B"></i></span>
+            <span class="wifi" style="background:#857B6C;clip-path:polygon(0 100%,100% 100%,50% 0)"></span>
+            <span class="batt" style="box-shadow:inset 0 0 0 1px #A69C8C"><i style="background:#6A6254"></i></span>
+          </span>
+        </div>
+        <div class="chat light">
+          <div class="chatbar">
+            <span class="av">P</span>
+            <span><span class="nm">Papi</span><span class="st">online</span></span>
+            <span class="ic"><span>⌕</span><span>⋮</span></span>
+          </div>
+
+          <div class="thread">
+            <span class="day">Today</span>
+            <div class="bub in">Are you still coming tonight?<span class="when">19:42</span></div>
+            <div class="bub out">Of course. I'm on the train.<span class="when">19:43</span></div>
+            <div class="bub in">Good. I booked the table already.<span class="when">19:44</span></div>
+
+            <div class="readline" style="margin-top:4px">
+              <div class="bub in"><span class="txt">今夜はどこで会う？</span></div>
+              <span class="iris"><span class="ring"><i></i></span></span>
+            </div>
+
+            <div class="card-wrap"><div class="card">
+              <div class="top"><span class="d"></span><b>TRANSLATED</b><span class="x">✕</span></div>
+              <div class="chips"><span>Japanese ▾</span><i>→</i><span class="hot">English ▾</span></div>
+              <p class="trans">Where are we meeting tonight?</p>
+              <p class="orig">今夜はどこで会う？</p>
+              <div class="hr"></div>
+              <div class="foot">
+                <span class="meta">online · 0.6 s · auto</span>
+                <span class="copy">Copy</span>
+              </div>
+            </div></div>
+
+            <div class="spacer"></div>
+            <div class="bub in" style="margin-bottom:10px">Ok — see you at eight.<span class="when">19:45</span></div>
+            <div class="homebar" style="margin:0 auto 12px"></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption"><b>The lens at work</b><span>clay wash · charcoal card</span></div>
+    </div>
+
+    <!-- ─────────── 3 · setup, charcoal ─────────── -->
+    <div>
+      <div class="device"><div class="screen dark">
+        <div class="status">
+          <span class="t" style="color:#A9A08E">16:59</span>
+          <span class="icons">
+            <span class="bars"><i style="height:3px;background:#857B6C"></i><i style="height:5px;background:#857B6C"></i><i style="height:7px;background:#857B6C"></i><i style="height:9px;background:#C2B9A6"></i></span>
+            <span class="wifi" style="background:#857B6C;clip-path:polygon(0 100%,100% 100%,50% 0)"></span>
+            <span class="batt" style="box-shadow:inset 0 0 0 1px #6A6254"><i style="background:#C2B9A6"></i></span>
+          </span>
+        </div>
+
+        <div class="app">
+          <div class="brandrow">
+            <span class="mono">A</span>
+            <span class="wordmark">Lucid</span>
+            <span class="lenspill"><span class="d" style="background:#B9825F"></span>Lens on</span>
+          </div>
+
+          <span class="pill-eyebrow">Screen lens</span>
+          <h2 class="hero">Lucid</h2>
+          <p class="lede">A floating lens that reads whatever it sits over — in WhatsApp, in a
+            browser, anywhere — and translates it in place.</p>
+
+          <div class="shell"><div class="core">
+            <div class="step">
+              <span class="dot ok" style="box-shadow:0 0 0 3px rgba(179,157,124,.16)"></span>
+              <span class="txt"><span class="t">Float over other apps</span><span class="s">Draw-over-apps permission</span></span>
+              <span class="act done">Allowed</span>
+            </div>
+            <div class="step">
+              <span class="dot ok" style="box-shadow:0 0 0 3px rgba(179,157,124,.16)"></span>
+              <span class="txt"><span class="t">Text access</span><span class="s">Reads the text — no recording</span></span>
+              <span class="act done">On</span>
+            </div>
+            <div class="step">
+              <span class="dot todo"></span>
+              <span class="txt"><span class="t">Look mode</span><span class="s">Optional — for hidden text</span></span>
+              <span class="act ghost">Off</span>
+            </div>
+          </div></div>
+
+          <div class="rowlabel">
+            <span>Translate into</span>
+            <span class="lg"><b style="color:#FCF8F1">English</b><i class="chev"></i></span>
+          </div>
+
+          <div class="shell" style="margin-top:0"><div class="core">
+            <div class="setrow">
+              <span><span class="t">Auto-translate</span><span class="s">Reads when the lens stops</span></span>
+              <span class="seg"><i class="on">On</i><i class="off">Off</i></span>
+            </div>
+            <div class="setrow">
+              <span><span class="t">Engine</span><span class="s">Online — best quality</span></span>
+              <span class="seg"><i class="off">Device</i><i class="on">Online</i></span>
+            </div>
+          </div></div>
+
+          <div class="cta">Turn the lens off<span class="knob">↗</span></div>
+          <p class="statusline">Drag the lens over any text. It reads when you stop.</p>
+          <div class="homebar"></div>
+        </div>
+      </div></div>
+      <div class="caption"><b>Setup, inverse</b><span>charcoal canvas · cream ink</span></div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+    />
+    <title>Lucid — screen access</title>
+    <link rel="stylesheet" href="ui.css" />
+    <style>
+      body {
+        padding: 14px;
+        -webkit-app-region: drag;
+      }
+
+      .shell {
+        animation: rise 0.6s var(--ease-out) both;
+      }
+
+      .core {
+        padding: 26px 26px 22px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: var(--mint-dim);
+        box-shadow: inset 0 0 0 1px rgba(123, 241, 198, 0.22);
+        color: var(--mint);
+        font-size: 9.5px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 0;
+        font-size: 27px;
+        line-height: 1.14;
+        letter-spacing: -0.032em;
+        font-weight: 460;
+      }
+
+      h1 em {
+        font-style: normal;
+        color: var(--ink-3);
+      }
+
+      .lede {
+        margin-top: 12px;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--ink-2);
+        max-width: 36ch;
+        letter-spacing: -0.004em;
+      }
+
+      .facts {
+        margin-top: 22px;
+        display: grid;
+        gap: 1px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      .fact {
+        display: flex;
+        gap: 11px;
+        align-items: flex-start;
+        padding: 13px 14px;
+        background: rgba(9, 10, 12, 0.72);
+      }
+
+      .fact__icon {
+        flex: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.06);
+        margin-top: 1px;
+      }
+
+      .fact__icon svg { width: 11px; height: 11px; }
+      .fact__icon svg * { stroke: var(--mint); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+      .fact__text {
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+
+      .fact__text b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .actions {
+        margin-top: 22px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 9px 9px 18px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #06070a;
+        font-family: inherit;
+        font-size: 12.5px;
+        font-weight: 550;
+        letter-spacing: -0.005em;
+        cursor: pointer;
+        -webkit-app-region: no-drag;
+        transition: transform 0.45s var(--ease), background 0.45s var(--ease), opacity 0.3s var(--ease);
+      }
+
+      .cta:hover { transform: translateY(-1px); }
+      .cta:active { transform: scale(0.98); }
+      .cta[disabled] { opacity: 0.55; cursor: progress; }
+
+      .cta__orb {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.1);
+        transition: transform 0.45s var(--ease);
+      }
+
+      .cta:hover .cta__orb { transform: translate(2px, -2px) scale(1.03); }
+      .cta__orb svg { width: 12px; height: 12px; }
+      .cta__orb svg * { stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+      .ghost {
+        border: 0;
+        background: transparent;
+        color: var(--ink-3);
+        font-family: inherit;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 9px 10px;
+        border-radius: 999px;
+        -webkit-app-region: no-drag;
+        transition: color 0.35s var(--ease), background 0.35s var(--ease);
+      }
+
+      .ghost:hover { color: var(--ink-2); background: rgba(255, 255, 255, 0.05); }
+
+      .hint {
+        margin-top: 14px;
+        font-size: 10.5px;
+        line-height: 1.55;
+        color: var(--ink-4);
+        letter-spacing: 0.01em;
+      }
+
+      .hint b { color: var(--ink-3); font-weight: 500; }
+
+      .error {
+        margin-top: 12px;
+        font-size: 11.5px;
+        line-height: 1.5;
+        color: var(--rose);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="core">
+        <span class="badge"><span class="dot"></span> One-time permission</span>
+
+        <h1>Let Lucid read<br /><em>what you point at.</em></h1>
+
+        <p class="lede">
+          Lucid needs to see your screen to read the text under the lens. You grant it once, here — then it looks
+          only when you press the lens.
+        </p>
+
+        <div class="facts">
+          <div class="fact">
+            <span class="fact__icon"><svg viewBox="0 0 16 16"><path d="M2 8s2.4-4.2 6-4.2S14 8 14 8s-2.4 4.2-6 4.2S2 8 2 8Z" /><circle cx="8" cy="8" r="1.7" /></svg></span>
+            <span class="fact__text"><b>One still frame per press.</b> Not a recording, not a stream — a single snapshot of the lens area.</span>
+          </div>
+          <div class="fact">
+            <span class="fact__icon"><svg viewBox="0 0 16 16"><path d="M8 1.8v3M8 11.2v3M1.8 8h3M11.2 8h3" /><circle cx="8" cy="8" r="2.6" /></svg></span>
+            <span class="fact__text"><b>The icon only reads when you touch it.</b> Idle means idle. Nothing runs in the background.</span>
+          </div>
+          <div class="fact">
+            <span class="fact__icon"><svg viewBox="0 0 16 16"><path d="M8 2v4M8 10v4" /><path d="M3.5 5.5h9v5h-9z" /></svg></span>
+            <span class="fact__text"><b>OCR stays on this machine.</b> Only the extracted text is sent for translation.</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="cta" id="grantBtn">
+            <span>Allow screen access</span>
+            <span class="cta__orb"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M6 4h6v6" /></svg></span>
+          </button>
+          <button class="ghost" id="laterBtn">Not now</button>
+        </div>
+
+        <p class="hint" id="hint">
+          Works with any app — WhatsApp, Telegram, a browser, a game. Press <b>Ctrl + Alt + T</b> to read, or right-click
+          the lens for options.
+        </p>
+
+        <p class="error" id="error" hidden></p>
+      </div>
+    </div>
+
+    <script src="setup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Parchment plate: the launcher art's own paper, edge to edge. The magnifier
+     itself lives in the foreground layer (design/icon/lens-mark.svg). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient
+        android:angle="315"
+        android:startColor="#FCF8EF"
+        android:centerColor="#F8F1E2"
+        android:endColor="#F3EAD7"
+        android:type="linear" />
+</shape>

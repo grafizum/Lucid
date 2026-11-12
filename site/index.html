@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucid — a screen translator for Android</title>
+<meta name="description" content="Lucid is a small glass lens that floats over any app on Android. Drag it over text and read the translation in place. No account, no recordings, nothing stored.">
+<link rel="canonical" href="https://lucid.grafizum.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lucid — a screen translator for Android">
+<meta property="og:description" content="A small lens that floats over any app: drag it over text, read the translation in place.">
+<meta property="og:url" content="https://lucid.grafizum.com/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img class="mark" src="favicon.svg" alt="" width="26" height="26">
+      <span>Lucid</span>
+    </a>
+    <nav class="nav" aria-label="Site">
+      <a href="privacy">Privacy</a>
+      <a href="terms">Terms</a>
+      <a href="mailto:privacy@grafizum.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <p class="eyebrow">Screen lens for Android</p>
+    <h1>Translate what is on your screen, <span class="soft">without leaving it.</span></h1>
+    <p class="lead">Lucid is a small glass lens that floats over any app. Drag it over a message, a menu or a page; it reads the words underneath and hands you the translation in place.</p>
+
+    <ul class="meta">
+      <li>Android 8 and up</li>
+      <li>No account</li>
+      <li>Nothing stored</li>
+      <li>Online or on-device</li>
+    </ul>
+
+    <div class="actions">
+      <span class="btn btn-soon" aria-disabled="true">Coming to Google Play</span>
+      <a class="btn btn-ghost" href="privacy">Read the privacy note</a>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="how">
+    <h2 id="how" style="margin-top: 8px;">How it reads</h2>
+    <div class="grid">
+      <article class="card">
+        <p class="num">1</p>
+        <h3>Text, not pixels</h3>
+        <p>Lucid asks Android’s accessibility tree what is at the point under the lens. It gets the exact string and its position, so the highlight sits on the words themselves and chat timestamps are left out.</p>
+      </article>
+      <article class="card">
+        <p class="num">2</p>
+        <h3>One line, not the page</h3>
+        <p>The lens reads the single message, menu row or paragraph it is sitting on — never a wider block, and never while it is moving. When the online engine translates it, the rest of that screen travels along as context, because a line on its own often translates into the wrong sense.</p>
+      </article>
+      <article class="card">
+        <p class="num">3</p>
+        <h3>Optional look mode</h3>
+        <p>Photos, video and apps that hide their text have nothing to read. Look mode takes one still frame of the display, runs text recognition on it, and keeps nothing.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="dark">
+      <p class="eyebrow">The promise</p>
+      <h2>Your words stay yours.</h2>
+      <ul>
+        <li>The card shows only the line under the lens, never a wider block.</li>
+        <li>Lucid keeps no copy of what it reads and no history of translations.</li>
+        <li>No accounts, no analytics, no advertising, no trackers.</li>
+        <li>With the on-device engine, everything stays on the phone.</li>
+        <li>With the online engine, that line and up to about 700 characters of the rest of the screen go to Google Translate, as context. The on-device engine sends nothing at all.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap prose" aria-labelledby="perms" style="max-width: 760px;">
+    <h2 id="perms">Permissions, and why</h2>
+    <p>Lucid asks for as little as Android allows, and every permission has one job.</p>
+    <ul>
+      <li><strong>Display over other apps</strong> — so the lens can sit above the app you are in.</li>
+      <li><strong>Text access (accessibility)</strong> — so it can read the text under the lens. It is not used to control other apps, and it is granted once for the whole phone.</li>
+      <li><strong>Screen capture</strong> — optional, only if you turn on look mode; one still frame per read, in memory.</li>
+      <li><strong>Notifications</strong> — the one notice that keeps the lens running, with a button to turn it off.</li>
+    </ul>
+    <p class="note">Before you switch text access on, Lucid shows a plain-language note about what it reads and where that text goes, and asks you to agree first. Declining is fine — asking again brings the note back.</p>
+
+    <h2>Still being built</h2>
+    <p>Lucid is in its first release: Android only, because iOS does not allow floating overlays over other apps. If you would like to test a build before it reaches Google Play, write to <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Grafizum · Lucid</span>
+    <nav aria-label="Footer">
+      <a href="privacy">Privacy</a>
+      <a href="terms">Terms</a>
+      <a href="https://grafizum.com/legal-notice">Legal notice</a>
+      <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

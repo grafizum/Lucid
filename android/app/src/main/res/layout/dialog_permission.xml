@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What the app says when a switch is still off, or when Android is about to
+     ask to share the screen. The panel is a drawing of the screen the user is
+     about to meet, with the one control ringed and captioned, so nothing has to
+     be hunted for in Settings. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_dark_bg"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="22dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lucid_sans"
+            android:letterSpacing="0.2"
+            android:text="Permission needed"
+            android:textAllCaps="true"
+            android:textColor="@color/clay_300"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/permTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/lucid_sans"
+            android:letterSpacing="-0.02"
+            android:text="The lens needs Text access"
+            android:textColor="@color/cream_50"
+            android:textFontWeight="500"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/permBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/lucid_sans"
+            android:lineSpacingMultiplier="1.45"
+            android:text="Without it the lens still opens, but it reads nothing."
+            android:textColor="@color/sand_400"
+            android:textSize="11.5sp" />
+
+        <!-- the screen, drawn -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/guide_screen_bg"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingTop="11dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:id="@+id/guidePageLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lucid_sans"
+                android:letterSpacing="0.12"
+                android:maxLines="1"
+                android:text="Display over other apps"
+                android:textAllCaps="true"
+                android:textColor="@color/sand_500"
+                android:textSize="8.5sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/guide_row_ghost" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <View
+                    android:id="@+id/guideRing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/guide_ring" />
+
+                <LinearLayout
+                    android:id="@+id/guideTargetRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/guide_row_bg"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp"
+                    android:paddingTop="9dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="9dp">
+
+                    <TextView
+                        android:id="@+id/guideRowTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lucid_sans"
+                        android:maxLines="1"
+                        android:text="Lucid"
+                        android:textColor="@color/cream_50"
+                        android:textSize="10.5sp" />
+
+                    <TextView
+                        android:id="@+id/guideRowSub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/lucid_sans"
+                        android:maxLines="1"
+                        android:text="Tap this to reach its switch"
+                        android:textColor="@color/sand_500"
+                        android:textSize="8.5sp" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Android's own dialog has no list: the target there is a button. -->
+            <FrameLayout
+                android:id="@+id/guidePillWrap"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="9dp"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/guidePillRing"
+                    android:layout_width="116dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/guide_ring" />
+
+                <TextView
+                    android:id="@+id/guidePill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="3dp"
+                    android:background="@drawable/btn_dark_solid"
+                    android:fontFamily="@font/lucid_sans"
+                    android:gravity="center"
+                    android:minWidth="104dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="Start now"
+                    android:textColor="@color/ink_900"
+                    android:textFontWeight="500"
+                    android:textSize="10.5sp" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/guide_row_ghost" />
+
+            <TextView
+                android:id="@+id/guideCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/lucid_sans"
+                android:gravity="end"
+                android:text="↑ the switch is here"
+                android:textColor="@color/clay_300"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/guidePath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/lucid_sans"
+            android:lineSpacingMultiplier="1.35"
+            android:text="Settings › Accessibility › Lucid"
+            android:textColor="@color/sand_500"
+            android:textSize="9.5sp" />
+
+        <TextView
+            android:id="@+id/guideNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/lucid_sans"
+            android:lineSpacingMultiplier="1.35"
+            android:text="Greyed out? Open App info › ⋮ › Allow restricted settings first."
+            android:textColor="@color/clay_300"
+            android:textSize="9.5sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/permLater"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:background="@drawable/btn_dark_outline"
+                android:fontFamily="@font/lucid_sans"
+                android:gravity="center"
+                android:minWidth="76dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Not now"
+                android:textColor="@color/sand_300"
+                android:textFontWeight="500"
+                android:textSize="11.5sp" />
+
+            <TextView
+                android:id="@+id/permOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/btn_dark_solid"
+                android:fontFamily="@font/lucid_sans"
+                android:gravity="center"
+                android:minWidth="96dp"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:text="Open settings"
+                android:textColor="@color/ink_900"
+                android:textFontWeight="500"
+                android:textSize="11.5sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

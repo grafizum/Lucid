@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The paper: one flat cream, no hazes. The two radial blooms that used to sit
+     here left a soft oval band across the page — a gradient whose edge could be
+     seen on a large, quiet surface, which is exactly where it must not be.
+     Depth belongs to the objects on the page (the cards' shells, the slide's
+     pressed rim), not to the page itself. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/cream_100" />
+</shape>

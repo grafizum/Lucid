@@ -1,0 +1,619 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:paddingTop="30dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="24dp">
+
+        <!-- the settings give way when the phone is short: they scroll, while
+             the slide and the footer stay pinned to the bottom
+             edge, so the version and grafizum.com can never be pushed off. -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <!-- one header line: what this screen is, and what the lens is doing -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/chip_accent_bg"
+                        android:fontFamily="@font/lucid_sans"
+                        android:letterSpacing="0.22"
+                        android:paddingStart="11dp"
+                        android:paddingTop="6dp"
+                        android:paddingEnd="11dp"
+                        android:paddingBottom="6dp"
+                        android:text="Screen lens"
+                        android:textAllCaps="true"
+                        android:textColor="@color/clay_600"
+                        android:textSize="9sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/lensState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/chip_bg"
+                        android:fontFamily="@font/lucid_sans"
+                        android:gravity="center"
+                        android:letterSpacing="0.1"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="Lens off"
+                        android:textAllCaps="true"
+                        android:textColor="@color/stone_600"
+                        android:textSize="9sp"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <!-- the mark and the wordmark: the launcher icon's lens, flat on paper -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- the app icon itself, cropped to its own plate: the same drawing the
+                         launcher shows, so the header and the home screen cannot disagree -->
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_mark_lens" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:fontFamily="@font/lucid_sans"
+                        android:letterSpacing="-0.045"
+                        android:text="Lucid"
+                        android:textColor="@color/ink_900"
+                        android:textFontWeight="500"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/lucid_sans"
+                    android:lineSpacingMultiplier="1.4"
+                    android:text="Reads whatever the lens sits over — WhatsApp, a browser, any app — and translates it in place."
+                    android:textColor="@color/stone_600"
+                    android:textSize="13sp" />
+
+                <!-- setup card: a beige tray holding a paper core -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:background="@drawable/shell_bg"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/card_bg"
+                        android:orientation="vertical"
+                        android:paddingStart="15dp"
+                        android:paddingTop="1dp"
+                        android:paddingEnd="13dp"
+                        android:paddingBottom="1dp">
+
+                        <!-- step 1: float over other apps -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+
+                            <View
+                                android:id="@+id/dot1"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:background="@drawable/dot_step" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="11dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Float over other apps"
+                                    android:textColor="@color/ink_900"
+                                    android:textFontWeight="500"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/sub1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Off by default — lets the lens sit on top"
+                                    android:textColor="@color/stone_500"
+                                    android:textSize="10.5sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/btn1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/btn_ghost"
+                                android:fontFamily="@font/lucid_sans"
+                                android:gravity="center"
+                                android:paddingStart="13dp"
+                                android:paddingEnd="13dp"
+                                android:text="Allow"
+                                android:textColor="@color/ink_900"
+                                android:textSize="10.5sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/hairline_light" />
+
+                        <!-- step 2: text access, the one the lens reads with -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+
+                            <View
+                                android:id="@+id/dot2"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:background="@drawable/dot_step" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="11dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Text access"
+                                    android:textColor="@color/ink_900"
+                                    android:textFontWeight="500"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/sub2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Off by default — lets the lens read text"
+                                    android:textColor="@color/stone_500"
+                                    android:textSize="10.5sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/btn2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/btn_ghost"
+                                android:fontFamily="@font/lucid_sans"
+                                android:gravity="center"
+                                android:paddingStart="13dp"
+                                android:paddingEnd="13dp"
+                                android:text="Allow"
+                                android:textColor="@color/ink_900"
+                                android:textSize="10.5sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/hairline_light" />
+
+                        <!-- step 3: look mode, the optional whole-screen fallback -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+
+                            <View
+                                android:id="@+id/dot3"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:background="@drawable/dot_step" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="11dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Look mode"
+                                    android:textColor="@color/ink_900"
+                                    android:textFontWeight="500"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/sub3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Optional — reads images, video and hidden text"
+                                    android:textColor="@color/stone_500"
+                                    android:textSize="10.5sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/btn3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/btn_ghost"
+                                android:fontFamily="@font/lucid_sans"
+                                android:gravity="center"
+                                android:paddingStart="13dp"
+                                android:paddingEnd="13dp"
+                                android:text="Off"
+                                android:textColor="@color/ink_900"
+                                android:textSize="10.5sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/hairline_light" />
+
+                        <!-- step 4: the shade's button, added from here -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+
+                            <View
+                                android:id="@+id/dot4"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:background="@drawable/dot_step" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="11dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Quick button"
+                                    android:textColor="@color/ink_900"
+                                    android:textFontWeight="500"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/sub4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Adds Lucid to the shade's quick buttons"
+                                    android:textColor="@color/stone_500"
+                                    android:textSize="10.5sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/btn4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/btn_ghost"
+                                android:fontFamily="@font/lucid_sans"
+                                android:gravity="center"
+                                android:paddingStart="13dp"
+                                android:paddingEnd="13dp"
+                                android:text="Add"
+                                android:textColor="@color/ink_900"
+                                android:textSize="10.5sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- translate into: one row, the language is the control -->
+                <LinearLayout
+                    android:id="@+id/changeTarget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="2dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/lucid_sans"
+                        android:letterSpacing="0.22"
+                        android:text="Translate into"
+                        android:textAllCaps="true"
+                        android:textColor="@color/stone_500"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/targetName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lucid_sans"
+                        android:letterSpacing="-0.02"
+                        android:text="English"
+                        android:textColor="@color/ink_900"
+                        android:textFontWeight="500"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="5dp"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_chevron" />
+                </LinearLayout>
+
+                <!-- auto-translate and engine: one tray, two rows -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/shell_bg"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/card_bg"
+                        android:orientation="vertical"
+                        android:paddingStart="15dp"
+                        android:paddingTop="1dp"
+                        android:paddingEnd="13dp"
+                        android:paddingBottom="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Auto-translate"
+                                    android:textColor="@color/ink_900"
+                                    android:textFontWeight="500"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/autoHint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Reads when the lens stops"
+                                    android:textColor="@color/stone_500"
+                                    android:textSize="10.5sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/autoBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/chip_accent_bg"
+                                android:fontFamily="@font/lucid_sans"
+                                android:gravity="center"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:text="On"
+                                android:textColor="@color/clay_600"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/hairline_light" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Engine"
+                                    android:textColor="@color/ink_900"
+                                    android:textFontWeight="500"
+                                    android:textSize="13sp" />
+
+                                <TextView
+                                    android:id="@+id/engHint"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:fontFamily="@font/lucid_sans"
+                                    android:text="Best quality — sent to Google Translate"
+                                    android:textColor="@color/stone_500"
+                                    android:textSize="10.5sp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/engBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/chip_accent_bg"
+                                android:fontFamily="@font/lucid_sans"
+                                android:gravity="center"
+                                android:paddingStart="15dp"
+                                android:paddingEnd="15dp"
+                                android:text="Online"
+                                android:textColor="@color/clay_600"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    <!-- the slide keeps its 18dp gap now that it is pinned, not floating -->
+    <!-- the one CTA: a slide. Off, the well sits left and drags right. On, it
+         sits right and drags left, with the cross beside it as the other way. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/stopX"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:id="@+id/stopXBtn"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:background="@drawable/stop_x_bg"
+                android:clickable="true"
+                android:contentDescription="Turn the lens off"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_close" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <com.grafizum.lucid.SwipeToStart
+            android:id="@+id/startBtn"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- footer: which build this is on the left, grafizum.com in the middle -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/versionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:fontFamily="@font/lucid_sans"
+            android:letterSpacing="0.04"
+            android:textColor="@color/stone_500"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lucid_sans"
+            android:letterSpacing="0.04"
+            android:text="grafizum.com"
+            android:textColor="@color/stone_500"
+            android:textSize="10sp" />
+    </FrameLayout>
+</LinearLayout>

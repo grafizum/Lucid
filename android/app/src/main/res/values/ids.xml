@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated ids that are not views: the tag a press is remembered under. -->
+<resources>
+    <item name="press_tag" type="id" />
+</resources>

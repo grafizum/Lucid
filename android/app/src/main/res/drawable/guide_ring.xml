@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The ring breathes: the eye lands on it before a word is read. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#00000000" />
+    <corners android:radius="9dp" />
+    <stroke
+        android:width="2dp"
+        android:color="@color/clay_300" />
+</shape>

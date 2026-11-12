@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lucid — the slide, five ways</title>
+<style>
+  @font-face{
+    font-family:"Lucid Sans";
+    src:url("fonts/PlusJakarta.ttf") format("truetype-variations");
+    font-weight:200 800; font-display:block;
+  }
+  @font-face{
+    font-family:"Geist";
+    src:url("fonts/Geist.woff2") format("woff2-variations");
+    font-weight:100 900; font-display:block;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:radial-gradient(900px 500px at 50% -10%, rgba(252,248,241,.05), transparent 60%), #14130F;
+    color:#F8F2E7; font-family:"Lucid Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; word-spacing:.06em;
+  }
+  .stage{width:1176px;margin:0 auto;padding:54px 28px 60px}
+
+  .head{margin-bottom:26px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:"Geist",sans-serif;font-size:10px;
+    letter-spacing:.24em;text-transform:uppercase;color:#C2B9A6;padding:7px 13px;border-radius:999px;
+    background:rgba(252,248,241,.045);box-shadow:inset 0 0 0 1px rgba(252,248,241,.09)}
+  .eyebrow i{width:5px;height:5px;border-radius:50%;background:#B9825F;display:block}
+  .head h1{margin:16px 0 0;font-size:32px;line-height:1.05;letter-spacing:-.035em;font-weight:500;color:#FCF8F1}
+  .head h1 em{font-style:normal;color:#D3A582}
+  .head p{margin:10px 0 0;font-size:12.5px;line-height:1.6;color:#A9A08E;max-width:66ch}
+
+  .row{display:flex;align-items:center;gap:32px;padding:20px 0;border-top:1px solid rgba(252,248,241,.07)}
+  .row:first-of-type{border-top:0}
+  .copy{width:340px;flex:none}
+  .num{font-family:"Geist",sans-serif;font-size:10px;letter-spacing:.22em;color:#857B6C}
+  .name{margin:6px 0 0;font-size:18px;font-weight:500;letter-spacing:-.02em;color:#FCF8F1}
+  .why{margin:7px 0 0;font-size:11.5px;line-height:1.62;color:#A9A08E}
+  .tags{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap}
+  .tag{font-family:"Geist",sans-serif;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:#C2B9A6;padding:4px 9px;border-radius:999px;background:rgba(252,248,241,.05);
+    box-shadow:inset 0 0 0 1px rgba(252,248,241,.08)}
+  .tag.hot{color:#D3A582}
+
+  /* the pane: paper at 0.72 of device scale, so 360 x 58 dp reads as 680 x 110 */
+  .pane{width:736px;height:166px;flex:none;border-radius:14px;padding:28px 28px;
+    box-shadow:inset 0 0 0 1px rgba(252,248,241,.08);
+    background:#F8F2E7;}
+
+  /* — geometry — */
+  .bar{position:relative;width:680px;height:110px;border-radius:55px;display:flex;align-items:center}
+  .knob{position:absolute;left:15px;top:15px;width:79px;height:79px;border-radius:50%;
+    display:grid;place-items:center}
+  .knob svg{width:34px;height:34px;display:block}
+  .label{position:absolute;left:122px;font-size:25.5px;font-weight:500;letter-spacing:.01em;
+    font-family:"Lucid Sans",sans-serif;white-space:nowrap}
+  .endarrow{position:absolute;right:56px;display:grid;place-items:center}
+  .endarrow svg{width:27px;height:27px;display:block}
+  .ink{stroke:rgba(25,24,20,.66)}
+  .inkfull{stroke:#191814}
+
+  /* 1 · pressed well */
+  .v1{border:1.2px solid rgba(179,157,124,.55);box-shadow:
+      inset 0 14px 19px -11px rgba(25,24,20,.22),
+      inset 0 -9px 15px -7px rgba(255,255,255,.92)}
+  .v1 .knob{background:#FCF8F1;box-shadow:0 6px 11px -2px rgba(25,24,20,.30)}
+  .v1 .label{color:#6A6254}
+
+  /* 2 · raised card */
+  .v2{background:#FCF8F1;box-shadow:
+      0 7px 16px -5px rgba(148,128,96,.44),
+      0 2px 4px -1px rgba(148,128,96,.20),
+      inset 0 0 0 1px rgba(25,24,20,.045)}
+  .v2 .knob{background:#F4ECDD;box-shadow:
+      inset 0 3px 5px rgba(25,24,20,.10),
+      inset 0 -3px 5px rgba(255,255,255,.8)}
+  .v2 .label{color:#191814}
+
+  /* 3 · charcoal bar */
+  .v3{background:#23221E;box-shadow:inset 0 1px 0 rgba(252,248,241,.07)}
+  .v3 .knob{background:#FCF8F1}
+  .v3 .label{color:#F7F1E4}
+
+  /* 4 · tray & core */
+  .v4{background:rgba(223,210,184,.5);padding:7px}
+  .v4 .core{position:relative;width:100%;height:100%;border-radius:48px;background:#FCF8F1;
+    box-shadow:0 1px 2px rgba(148,128,96,.18)}
+  .v4 .knob{left:9px;top:9px;width:75px;height:75px;background:#FCF8F1;
+    box-shadow:inset 0 0 0 1px rgba(25,24,20,.08), 0 4px 8px -3px rgba(148,128,96,.45)}
+  .v4 .label{left:100px;color:#191814;font-size:23.5px}
+
+  /* 5 · bare */
+  .v5 .knob{background:#FCF8F1;box-shadow:0 7px 12px -3px rgba(25,24,20,.28)}
+  .v5 .label{color:#6A6254}
+
+  .foot{margin-top:26px;padding-top:14px;border-top:1px solid rgba(252,248,241,.07);
+    font-family:"Geist",sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#857B6C}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="head">
+    <span class="eyebrow"><i></i>Lucid · five directions</span>
+    <h1>The slide, <em>five ways</em></h1>
+    <p>Same control, same geometry — 360 × 58 dp, a 42 dp knob at 8 dp inset, 13.5 sp label, an arrow that points
+       the way it travels. Only the surface changes. Shown lens off, at 0.72 of device scale.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="row">
+    <div class="copy">
+      <span class="num">01</span>
+      <h2 class="name">Pressed well</h2>
+      <p class="why">The page itself, dented: one shade under the top rim, one lip of light along the foot, and
+        the knob the only thing with a shadow — held together by a warm hairline so the control's edge is never
+        in doubt. The rim turns clay while you drag.</p>
+      <div class="tags"><span class="tag">pressed</span><span class="tag">depth 1</span><span class="tag hot">shipped</span></div>
+    </div>
+    <div class="pane">
+      <div class="bar v1">
+        <div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"
+          stroke-linejoin="round" class="ink"><path d="M5.6,12 L18,12 M12.4,6.4 L18,12 L12.4,17.6"/></svg></div>
+        <span class="label">Start the lens</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="row">
+    <div class="copy">
+      <span class="num">02</span>
+      <h2 class="name">Raised card</h2>
+      <p class="why">The CTA becomes a card: paper lifted off the page by a soft shadow, the knob a socket pressed
+        into it. Reads as the most deliberate — a thing you own rather than a groove you use.</p>
+      <div class="tags"><span class="tag">raised</span><span class="tag">depth 2</span></div>
+    </div>
+    <div class="pane">
+      <div class="bar v2">
+        <div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"
+          stroke-linejoin="round" class="inkfull"><path d="M5.6,12 L18,12 M12.4,6.4 L18,12 L12.4,17.6"/></svg></div>
+        <span class="label">Start the lens</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="row">
+    <div class="copy">
+      <span class="num">03</span>
+      <h2 class="name">Charcoal bar</h2>
+      <p class="why">Flat ink capsule, cream type, cream knob. It borrows the translation card's authority and
+        becomes the one dark object on the screen — impossible to miss, still 2D.</p>
+      <div class="tags"><span class="tag">flat</span><span class="tag">depth 0</span><span class="tag hot">loudest</span></div>
+    </div>
+    <div class="pane">
+      <div class="bar v3">
+        <div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"
+          stroke-linejoin="round" stroke="#191814"><path d="M5.6,12 L18,12 M12.4,6.4 L18,12 L12.4,17.6"/></svg></div>
+        <span class="label">Start the lens</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="row">
+    <div class="copy">
+      <span class="num">04</span>
+      <h2 class="name">Tray &amp; core</h2>
+      <p class="why">The settings card's own double bezel — beige tray, paper core — turned into a button. The most
+        literal "fits the theme": the CTA joins the family instead of standing apart.</p>
+      <div class="tags"><span class="tag">contained</span><span class="tag">depth 1</span></div>
+    </div>
+    <div class="pane">
+      <div class="bar v4">
+        <div class="core">
+          <div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round" class="inkfull"><path d="M5.6,12 L18,12 M12.4,6.4 L18,12 L12.4,17.6"/></svg></div>
+          <span class="label">Start the lens</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="row">
+    <div class="copy">
+      <span class="num">05</span>
+      <h2 class="name">Bare</h2>
+      <p class="why">No box at all: a paper disc on the page, the word beside it, a faint arrow waiting at the far
+        end. The most editorial — it trusts the gesture instead of advertising it.</p>
+      <div class="tags"><span class="tag">no surface</span><span class="tag hot">most minimal</span></div>
+    </div>
+    <div class="pane">
+      <div class="bar v5">
+        <div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"
+          stroke-linejoin="round" class="ink"><path d="M5.6,12 L18,12 M12.4,6.4 L18,12 L12.4,17.6"/></svg></div>
+        <span class="label">Start the lens</span>
+        <span class="endarrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" stroke="#B39D7C"><path d="M8,12 L16,12 M12.6,8.4 L16,12 L12.6,15.6"/></svg></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">All five keep the same hit area, the same travel and the same hand-over — only the surface differs</div>
+</div>
+</body>
+</html>

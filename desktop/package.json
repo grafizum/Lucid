@@ -1,0 +1,17 @@
+{
+  "name": "lucid-screen-translator",
+  "productName": "Lucid",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A floating lens that translates whatever text you point it at, on any app.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "preview": "electron scripts/preview.js",
+    "selftest": "electron scripts/selftest.js"
+  },
+  "dependencies": {
+    "electron": "^45.0.0",
+    "tesseract.js": "^7.0.0"
+  }
+}

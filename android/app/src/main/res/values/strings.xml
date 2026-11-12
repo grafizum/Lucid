@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lucid</string>
+    <string name="notif_channel">Lens session</string>
+    <string name="notif_title">Lens is on</string>
+    <string name="notif_text">Tap the lens over any text to translate it.</string>
+    <string name="notif_stop">Turn off</string>
+    <string name="a11y_label">Lucid text access</string>
+    <string name="a11y_summary">Lets the lens read the text under it</string>
+    <string name="a11y_description">Lucid reads the text that sits under its floating lens so it can translate it. It reads only that text, keeps no copy, and records nothing. With the online engine, the words under the lens are sent to Google Translate, together with the rest of that screen as context, to be translated; with the on-device engine nothing leaves the phone.</string>
+    <string name="lens_close">Drop the lens here to turn it off</string>
+    <string name="lens_delete">Delete</string>
+    <string name="tile_label">Lucid lens</string>
+    <string name="tile_on">Lens on</string>
+    <string name="tile_off">Lens off</string>
+</resources>

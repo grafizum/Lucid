@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Parchment & Charcoal. See design/palette.md for the roles and the measured
+     contrast of every pair used here. -->
+<resources>
+
+    <!-- cream — paper, light surfaces -->
+    <color name="cream_50">#FCF8F1</color>
+    <color name="cream_100">#F8F2E7</color>
+    <color name="cream_200">#F1E9DA</color>
+    <color name="cream_300">#E7DCC7</color>
+
+    <!-- beige — the raised warm middle -->
+    <color name="beige_200">#EBE1CE</color>
+    <color name="beige_300">#DFD2B8</color>
+    <color name="beige_400">#CDBB9B</color>
+    <color name="beige_500">#B39D7C</color>
+
+    <!-- stone — muted text on cream -->
+    <color name="stone_400">#A69C8C</color>
+    <color name="stone_500">#857B6C</color>
+    <color name="stone_600">#6A6254</color>
+
+    <!-- charcoal — ink and dark canvas -->
+    <color name="ink_900">#191814</color>
+    <color name="ink_800">#23221E</color>
+    <color name="ink_700">#2E2C27</color>
+    <color name="ink_600">#3A3831</color>
+
+    <!-- sand — muted text on charcoal -->
+    <color name="sand_300">#D8CFBC</color>
+    <color name="sand_400">#C2B9A6</color>
+    <color name="sand_500">#A9A08E</color>
+
+    <!-- clay — the only accent -->
+    <color name="clay_300">#D3A582</color>
+    <color name="clay_400">#B9825F</color>
+    <color name="clay_500">#A46E4B</color>
+    <color name="clay_600">#8A5A3C</color>
+    <color name="clay_700">#6E4630</color>
+
+    <!-- semantics, light surfaces then on-dark readings -->
+    <color name="olive_600">#55603F</color>
+    <color name="amber_600">#8A6A2B</color>
+    <color name="rose_600">#8C3B2F</color>
+    <color name="amber_300">#E3C58F</color>
+    <color name="rose_300">#DFA79A</color>
+
+    <!-- hairlines and translucent fills -->
+    <color name="hairline_light">#14191814</color>
+    <color name="hairline_dark">#1AFCF8F1</color>
+    <color name="shell_light">#6BDFD2B8</color>
+    <color name="shell_dark">#E62E2C27</color>
+    <color name="wash">#8CB39D7C</color>
+    <color name="scrim">#8C14120F</color>
+
+    <!-- the lens bubble -->
+    <color name="bubble_core">#16150F</color>
+    <color name="bubble_edge">#38FCF8F1</color>
+
+</resources>

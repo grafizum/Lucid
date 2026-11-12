@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The disclosure's own card: a quiet inset with a hairline, so the note about
+     what the lens reads sits apart from the switches without shouting. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#14FCF8F1" />
+    <corners android:radius="16dp" />
+    <stroke android:width="1dp" android:color="@color/hairline_dark" />
+</shape>

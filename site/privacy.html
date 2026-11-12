@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucid — Privacy Policy</title>
+<meta name="description" content="What the Lucid screen translator reads, where that text goes, and what is never collected.">
+<link rel="canonical" href="https://lucid.grafizum.com/privacy">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lucid — Privacy Policy">
+<meta property="og:url" content="https://lucid.grafizum.com/privacy">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img class="mark" src="favicon.svg" alt="" width="26" height="26">
+      <span>Lucid</span>
+    </a>
+    <nav class="nav" aria-label="Site">
+      <a href="privacy" aria-current="page">Privacy</a>
+      <a href="terms">Terms</a>
+      <a href="mailto:privacy@grafizum.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap prose-wrap">
+  <div class="page-head">
+    <p class="eyebrow">Lucid for Android</p>
+    <h1>Privacy Policy</h1>
+    <p class="stamp">Effective 5 November 2026 · Applies to the Lucid Android app and this website</p>
+  </div>
+
+  <div class="summary prose">
+    <p><strong>The short version.</strong> Lucid reads the text under its lens so it can translate it. It keeps no copy, has no account system, and contains no analytics, advertising or tracking. With the on-device engine nothing leaves your phone. With the online engine, the line under the lens — plus the rest of what is on that screen, as context — is sent to Google Translate over an encrypted connection. Nothing is sent to us unless you choose to write to us, and the only personal data we ever hold is an email you decide to send.</p>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#scope">What this policy covers</a></li>
+      <li><a href="#reads">What Lucid reads</a></li>
+      <li><a href="#online">Where your text goes</a></li>
+      <li><a href="#stored">What is stored on your phone</a></li>
+      <li><a href="#not-collected">What we never collect</a></li>
+      <li><a href="#write">When you write to us</a></li>
+      <li><a href="#permissions">Permissions</a></li>
+      <li><a href="#clipboard">Copying text</a></li>
+      <li><a href="#third-parties">Third-party services</a></li>
+      <li><a href="#transfers">Transfers abroad</a></li>
+      <li><a href="#basis">Why we process it, and on what basis</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#retention">Retention</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#choices">Your choices</a></li>
+      <li><a href="#website">This website</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <div class="prose">
+    <h2 id="who">1. Who we are</h2>
+    <p>Lucid is an Android app published by <strong>Grafizum</strong>, a sole proprietorship established in Switzerland — the same operator as <a href="https://grafizum.com">grafizum.com</a>. Grafizum is the controller for the processing described in this policy.</p>
+    <p>Grafizum, sole proprietorship · Gian Antonio Guido · c/o SHS Superior Homestaging Styling, Viale Bartolomeo Papio 3, 6612 Ascona, Switzerland.<br>
+    Privacy and data protection requests: <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a>. That mailbox is monitored and is the fastest route to a person. The full operator details are in the <a href="https://grafizum.com/legal-notice">Legal Notice</a>.</p>
+
+    <h2 id="scope">2. What this policy covers</h2>
+    <p>This policy covers the Lucid app for Android and this website. It does not cover the other apps and websites you point the lens at, Google’s own services, or Google Play — those have their own policies, and section 10 says which ones are involved.</p>
+
+    <h2 id="reads">3. What Lucid reads</h2>
+    <p>Lucid is a floating lens. When you drag it over text and let it rest, it reads <strong>only the run of text directly under the lens</strong> — one chat bubble, one menu row, one line of a page. It does not read anything while the lens is still moving. If the lens is over blank space, it answers nothing rather than reaching for nearby text.</p>
+    <p>Reading happens in two ways, depending on what is on screen:</p>
+    <ul>
+      <li><strong>Text access.</strong> Android’s accessibility interface is asked what text sits at that point. This returns the exact string and its position. Lucid uses it for nothing else: it does not click, type, navigate or control other apps.</li>
+      <li><strong>Look mode (optional, off by default).</strong> For photos, video, and apps that hide their text, Lucid asks for screen capture, takes <strong>one still frame per read</strong>, recognises the text on it, and keeps nothing. Capture ends when you turn the lens off, and Android shows a permanent indicator while it is active.</li>
+    </ul>
+
+    <h2 id="online">4. Where your text goes</h2>
+    <p>Lucid has two translation engines, and you choose which one runs.</p>
+    <table>
+      <thead>
+        <tr><th>Engine</th><th>What happens to the text</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>On-device</strong></td>
+          <td>Language detection and translation run in Google ML Kit models on your phone. The text never leaves the device.</td>
+        </tr>
+        <tr>
+          <td><strong>Online</strong> (default)</td>
+          <td>The line under the lens is sent over HTTPS to Google’s translation service at <code>translate.googleapis.com</code>, and the translation comes back.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>What travels with the line.</strong> The online engine also sends the <em>rest of the text visible on that screen</em> — up to about 700 characters of it — as context, because a sentence read on its own often translates into the wrong sense. It is used to translate that one line, and for nothing else. On top of the text the request carries a generic user-agent string saying it comes from an Android app; there is no account, no device identifier, no advertising ID and no location in it. Google sees your IP address as the sender.</p>
+    <p>For languages written without spaces — Japanese and Chinese — Lucid also asks the same service for the meaning of each word on the line, so the card can show the words underneath. Those words travel in one request, and only for the card you are looking at.</p>
+    <p>You can switch to the on-device engine at any time in the app under <strong>Engine</strong>. If the online service cannot be reached, Lucid says so instead of sending your text anywhere else: there is no other translation provider, and no fallback service.</p>
+
+    <h2 id="stored">5. What is stored on your phone</h2>
+    <p>Lucid stores a small set of <strong>settings</strong>, and nothing else:</p>
+    <ul>
+      <li>the language you translate into;</li>
+      <li>whether auto-translate is on, and which engine you chose;</li>
+      <li>where the lens was last placed on the screen;</li>
+      <li>whether you added the quick-settings button;</li>
+      <li>whether you have read and agreed to the text-access note.</li>
+    </ul>
+    <p>These live in the app’s private storage on your device. They are not uploaded anywhere, and Android’s automatic backup is switched off for Lucid, so they are not copied to your Google account either. <strong>No scanned text, translation or history is stored</strong> — the card on screen is drawn from memory and disappears when you touch elsewhere, move the lens, or turn it off.</p>
+
+    <h2 id="not-collected">6. What we never collect</h2>
+    <ul>
+      <li>No accounts, names, email addresses or phone numbers.</li>
+      <li>No analytics, crash reporting or usage statistics.</li>
+      <li>No advertising, advertising identifiers or trackers of any kind.</li>
+      <li>No device identifiers, IP-based profiles or location data of our own.</li>
+      <li>No history of what you looked up.</li>
+      <li>No screen recordings. Look mode holds a single frame in memory while it reads, and discards it.</li>
+      <li>No access to your files, photos, camera, microphone, contacts or calendar — Lucid does not ask for them.</li>
+    </ul>
+    <p>There is nothing for us to sell, rent or share for advertising, and there never has been. We build no profiles and make no automated decisions about anyone.</p>
+
+    <h2 id="write">7. When you write to us</h2>
+    <p>Email is the only way personal data reaches us, and only when you choose to send it. Writing to <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a> gives us your email address, your name if you sign with one, and whatever you put in the message — including anything you quote or describe from the app.</p>
+    <p>We use it to answer you and to fix what you reported, and for nothing else: no newsletter, no marketing, no list, and no passing it on to anyone. How long we keep it is in section 15, and you can ask for it to go sooner.</p>
+    <p>Send only what we need. If you can describe a mistranslation without pasting the text, do that — the fewer words about you sitting in a mailbox, the better.</p>
+
+    <h2 id="permissions">8. Permissions</h2>
+    <ul>
+      <li><strong>Display over other apps</strong> — draws the lens above the app you are using.</li>
+      <li><strong>Accessibility (text access)</strong> — reads the text under the lens. This is the permission Android treats most sensitively; Lucid explains it in plain language inside the app and asks you to agree before the switch is offered, and the explanation is shown again if you decline and come back to it.</li>
+      <li><strong>Screen capture (media projection)</strong> — only if you turn on look mode. Requested for the whole display, one frame per read.</li>
+      <li><strong>Notifications</strong> — the single ongoing notice that keeps the lens session alive, with a button to stop it.</li>
+      <li><strong>Internet</strong> — the online engine and one-time downloads of on-device language models.</li>
+    </ul>
+    <p><strong>What text access is never used for.</strong> Lucid does not record keystrokes, does not read passwords or payment fields into any store, does not observe what you do over time or build a profile from it, does not click or type in other apps, and does not use it for advertising. It reads the single string under the lens when you ask for a translation, and holds nothing afterwards. This is the same description the app shows you before you grant the permission.</p>
+    <p>You can withdraw any of these in Android’s settings at any time. Lucid notices and stops using that capability.</p>
+
+    <h2 id="clipboard">9. Copying text</h2>
+    <p>The <strong>Copy</strong> button on a translation card places the <em>scanned original text</em> — not the translation — on your clipboard, at your request. The clipboard is managed by Android; Lucid does not read it.</p>
+
+    <h2 id="third-parties">10. Third-party services</h2>
+    <ul>
+      <li><strong>Google Translate</strong> — receives the text being translated when the online engine is used, together with your IP address. Google’s handling of that request is described in the <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>.</li>
+      <li><strong>Google ML Kit</strong> — on-device language identification, translation and text recognition, plus model downloads through Google Play services for the languages you use. The recognition and translation models run on your phone; the downloads are the only network traffic ML Kit causes.</li>
+      <li><strong>Google Play</strong> — distributes the app and delivers updates. That happens between your device and Google, under Google’s terms, and involves no data about what you look up.</li>
+    </ul>
+    <p>These are the only third parties involved. Lucid contains no other SDK that transmits data.</p>
+
+    <h2 id="transfers">11. Transfers abroad</h2>
+    <p>We run no server that receives your text, so there is nothing for us to transfer. The translation request goes from your phone directly to Google, which operates on a global network and may process it outside Switzerland or the European Economic Area. Those transfers follow Google’s own safeguards; Switzerland recognises the United States as providing adequate protection under the Swiss–US Data Privacy Framework in force since 15 September 2024, and Google additionally relies on standard contractual clauses. Where the GDPR applies, the same transfers rest on adequacy decisions or standard contractual clauses.</p>
+
+    <h2 id="basis">12. Why we process it, and on what basis</h2>
+    <p>We run no server that receives your text: the app sends nothing to Grafizum, and we hold no personal data about you. What Lucid does on your phone happens under your control, on your instruction, when you place the lens.</p>
+    <p>The Swiss FADP does not require a legal basis for every processing the way the GDPR does; it requires processing to follow the principles in Art. 6 FADP — good faith, proportionality, transparency, purpose limitation, accuracy and security — which is what this policy describes. Where a justification is needed under Art. 31 FADP, answering a message you send us rests on our overriding private interest in corresponding with you (Art. 31(1)(c) FADP) or on your consent (Art. 31(1)(a) FADP). Where the GDPR applies, that basis is our legitimate interest in answering you and keeping the app secure (Art. 6(1)(f) GDPR). The request logs described in section 18 rest on our overriding private interest in keeping this website available and secure (Art. 31(1)(c) FADP), and on that same legitimate interest where the GDPR applies.</p>
+
+    <h2 id="rights">13. Your rights</h2>
+    <p>Because we hold nothing about you, there is normally nothing to hand over, correct or erase. You can still write to <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a> to ask whether we process anything about you and for a copy of it (Art. 25 FADP), to have it corrected or deleted (Art. 32 FADP), or to object to our processing. We may ask you to confirm your identity first, and we answer within 30 days — the period Art. 25 FADP sets. The same address handles a request to restrict what we do with a message while a request is open, to receive it in a portable form, or to withdraw a consent you gave earlier (Art. 32 FADP). We carry out no automated decision-making and build no profiles, so there is none to object to.</p>
+    <p>You can also complain to a supervisory authority: in Switzerland the Federal Data Protection and Information Commissioner (FDPIC), Feldeggweg 1, 3003 Bern; in the EU or EEA, the authority where you live.</p>
+
+    <h2 id="security">14. Security</h2>
+    <p>What Lucid keeps is protected by Android’s app sandbox. Anything that leaves the phone — a translation request, a model download — travels over HTTPS. There is no store of scanned text on our side to lose.</p>
+    <p>No system is perfectly secure. If a breach at one of the providers involved were likely to put your rights at risk, we would notify you and the FDPIC without undue delay, as Art. 24 FADP requires; where the GDPR applies, a reportable breach reaches your supervisory authority within 72 hours of us becoming aware of it.</p>
+
+    <h2 id="retention">15. Retention</h2>
+    <p>We hold no personal data about you, so there is nothing for us to retain or delete on our side. Anything Lucid keeps lives on your phone and disappears when you clear the app’s storage or uninstall it. Text sent to Google Translate for a translation is handled under Google’s terms, not kept by us.</p>
+    <p>If you write to us, we keep that email for up to 24 months after the last contact so we can recognise a recurring problem, then delete it. Ask us to delete it earlier and we will, unless the law requires us to keep it.</p>
+
+    <h2 id="children">16. Children</h2>
+    <p>Lucid is a general-purpose translation tool and is not directed at children under 13. We do not knowingly collect information from anyone, including children, because we do not collect personal information at all. If a child has written to us and you would like that message removed, say so at the address in section 20 and we will delete it.</p>
+
+    <h2 id="choices">17. Your choices</h2>
+    <ul>
+      <li>Switch to the <strong>on-device engine</strong> to keep every word on your phone.</li>
+      <li>Turn <strong>look mode</strong> off, or never enable it.</li>
+      <li>Revoke any permission in Android’s settings.</li>
+      <li>Clear the app’s stored settings with <em>Clear storage</em> in Android’s app info, or by uninstalling Lucid — this removes everything the app kept, because it is all on your device.</li>
+    </ul>
+
+    <h2 id="website">18. This website</h2>
+    <p>These pages are served by <strong>Cloudflare</strong>, which hosts the site and filters abusive traffic at the network edge. Like any website, a request to <code>lucid.grafizum.com</code> reaches Cloudflare, which records the IP address, the requested URL, the response status and a timestamp for a short period so the site stays up and secure. We do not use those logs to identify anyone, and we keep no separate copy of them.</p>
+    <p>This site sets <strong>no cookies</strong> and runs no analytics, advertising or tracking. The typeface is served from this domain, not from a third-party server, and the pages load no scripts at all. There is no contact form: writing to us means sending an email.</p>
+
+    <h2 id="changes">19. Changes to this policy</h2>
+    <p>If Lucid starts doing something new with data, this page will say so before the change ships, and the effective date above will move. Material changes will also be noted in the app’s release notes.</p>
+
+    <h2 id="contact">20. Contact</h2>
+    <p>Questions about privacy, or a request about your data: <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a>.</p>
+    <p>Grafizum, sole proprietorship · Gian Antonio Guido · Viale Bartolomeo Papio 3, 6612 Ascona, Switzerland. Full operator details in the <a href="https://grafizum.com/legal-notice">Legal Notice</a>. Complaints may also go to the FDPIC, Feldeggweg 1, 3003 Bern.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Grafizum · Lucid</span>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="terms">Terms</a>
+      <a href="https://grafizum.com/legal-notice">Legal notice</a>
+      <a href="mailto:privacy@grafizum.com">privacy@grafizum.com</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

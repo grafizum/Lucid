@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>WhatsApp — demo surface for the Lucid preview</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #0b141a;
+        --panel: #111b21;
+        --panel-2: #202c33;
+        --line: #222d34;
+        --text: #e9edef;
+        --muted: #8696a0;
+        --green: #00a884;
+        --bubble-in: #202c33;
+        --bubble-out: #005c4b;
+      }
+
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        display: flex;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+        font-size: 14.5px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── left rail ─────────────────────────────────────────── */
+      .rail {
+        width: 64px;
+        flex: none;
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 0;
+        gap: 6px;
+      }
+
+      .rail__btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .rail__btn.is-active { color: var(--text); background: rgba(255,255,255,0.06); }
+      .rail__spacer { flex: 1; }
+
+      /* ── chat list ─────────────────────────────────────────── */
+      .list {
+        width: 300px;
+        flex: none;
+        background: var(--bg);
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .list__head {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .list__title { font-size: 20px; font-weight: 600; letter-spacing: -0.2px; }
+      .list__icons { display: flex; gap: 16px; color: var(--muted); font-size: 15px; }
+
+      .search {
+        margin: 8px 12px;
+        height: 35px;
+        border-radius: 9px;
+        background: var(--panel-2);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .rows { flex: 1; overflow: hidden; }
+
+      .row {
+        height: 72px;
+        display: flex;
+        gap: 13px;
+        align-items: center;
+        padding: 0 14px;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+      }
+
+      .row.is-active { background: var(--panel-2); }
+
+      .avatar {
+        width: 49px;
+        height: 49px;
+        border-radius: 50%;
+        flex: none;
+        display: grid;
+        place-items: center;
+        font-size: 17px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: -0.3px;
+      }
+
+      .avatar--maria { background: linear-gradient(150deg, #b45f7a, #7d3b52); }
+      .avatar--ana { background: linear-gradient(150deg, #4f7ea8, #2c4a66); }
+      .avatar--team { background: linear-gradient(150deg, #5b8f68, #33543c); }
+      .avatar--jorge { background: linear-gradient(150deg, #9a7a4b, #5f4a2c); }
+
+      .row__body { flex: 1; min-width: 0; }
+      .row__top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+      .row__name { font-size: 15.5px; font-weight: 500; }
+      .row__time { font-size: 11.5px; color: var(--muted); flex: none; }
+      .row__preview {
+        margin-top: 3px;
+        font-size: 13px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .row__preview b { color: var(--text); font-weight: 500; }
+
+      /* ── conversation ──────────────────────────────────────── */
+      .chat {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        background:
+          radial-gradient(circle at 18% 22%, rgba(255,255,255,0.017) 0 2px, transparent 3px),
+          radial-gradient(circle at 62% 68%, rgba(255,255,255,0.017) 0 2px, transparent 3px),
+          radial-gradient(circle at 84% 14%, rgba(255,255,255,0.014) 0 2px, transparent 3px),
+          var(--bg);
+        background-size: 74px 74px, 118px 118px, 96px 96px, auto;
+      }
+
+      .chat__head {
+        height: 60px;
+        flex: none;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 0 18px;
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .avatar--sm { width: 40px; height: 40px; font-size: 14px; }
+
+      .chat__who { flex: 1; }
+      .chat__name { font-size: 15.5px; font-weight: 500; }
+      .chat__status { font-size: 12px; color: var(--muted); margin-top: 1px; }
+      .chat__status i { color: var(--green); font-style: normal; }
+
+      .chat__icons { display: flex; gap: 20px; color: var(--muted); font-size: 15px; }
+
+      .thread {
+        flex: 1;
+        overflow: hidden;
+        padding: 16px 6% 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .daymark {
+        align-self: center;
+        font-size: 11.5px;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        color: #9aa8b0;
+        background: #1a252b;
+        border-radius: 7px;
+        padding: 5px 11px;
+        margin-bottom: 6px;
+      }
+
+      .msg {
+        max-width: 68%;
+        padding: 7px 10px 7px 11px;
+        border-radius: 9px;
+        font-size: 14.6px;
+        line-height: 1.42;
+        position: relative;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.22);
+      }
+
+      .msg--in {
+        align-self: flex-start;
+        background: var(--bubble-in);
+        border-top-left-radius: 2px;
+      }
+
+      .msg--out {
+        align-self: flex-end;
+        background: var(--bubble-out);
+        border-top-right-radius: 2px;
+      }
+
+      .msg__meta {
+        float: right;
+        margin: 6px 0 -2px 9px;
+        font-size: 11px;
+        color: rgba(233,237,239,0.55);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .msg__name {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #53bdeb;
+        margin-bottom: 2px;
+      }
+
+      .ticks { color: #53bdeb; font-size: 12px; letter-spacing: -2px; }
+
+      .composer {
+        flex: none;
+        height: 62px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 18px;
+        background: var(--panel);
+        border-top: 1px solid var(--line);
+      }
+
+      .composer__field {
+        flex: 1;
+        height: 40px;
+        border-radius: 9px;
+        background: var(--panel-2);
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .composer__icon { color: var(--muted); font-size: 17px; }
+    </style>
+  </head>
+  <body>
+    <div class="rail">
+      <div class="rail__btn is-active">💬</div>
+      <div class="rail__btn">◍</div>
+      <div class="rail__btn">◔</div>
+      <div class="rail__btn">☰</div>
+      <div class="rail__spacer"></div>
+      <div class="rail__btn">⚙</div>
+      <div class="rail__btn" style="color: #e9edef">◉</div>
+    </div>
+
+    <div class="list">
+      <div class="list__head">
+        <span class="list__title">Chats</span>
+        <span class="list__icons"><span>◍</span><span>✎</span><span>⋯</span></span>
+      </div>
+      <div class="search"><span>⌕</span><span>Search or start a new chat</span></div>
+
+      <div class="rows">
+        <div class="row is-active">
+          <div class="avatar avatar--maria">ML</div>
+          <div class="row__body">
+            <div class="row__top"><span class="row__name">María López</span><span class="row__time">14:02</span></div>
+            <div class="row__preview">El paquete llegó esta mañana. ¿Puedes…</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="avatar avatar--ana">AG</div>
+          <div class="row__body">
+            <div class="row__top"><span class="row__name">Ana García</span><span class="row__time">13:41</span></div>
+            <div class="row__preview"><b>Tú:</b> Perfecto, gracias 🙌</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="avatar avatar--team">DT</div>
+          <div class="row__body">
+            <div class="row__top"><span class="row__name">Diseño · Team</span><span class="row__time">12:15</span></div>
+            <div class="row__preview">Jorge: subí las fotos nuevas del…</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="avatar avatar--jorge">JR</div>
+          <div class="row__body">
+            <div class="row__top"><span class="row__name">Jorge Ruiz</span><span class="row__time">11:58</span></div>
+            <div class="row__preview">¿Nos vemos el jueves?</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="avatar avatar--ana">MC</div>
+          <div class="row__body">
+            <div class="row__top"><span class="row__name">Mamá</span><span class="row__time">Ayer</span></div>
+            <div class="row__preview">Llámame cuando puedas cariño</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="avatar avatar--team">SD</div>
+          <div class="row__body">
+            <div class="row__top"><span class="row__name">Soporte</span><span class="row__time">Ayer</span></div>
+            <div class="row__preview">Tu ticket ha sido resuelto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="chat__head">
+        <div class="avatar avatar--maria avatar--sm">ML</div>
+        <div class="chat__who">
+          <div class="chat__name">María López</div>
+          <div class="chat__status"><i>●</i> en línea</div>
+        </div>
+        <div class="chat__icons"><span>⌕</span><span>▶</span><span>⋯</span></div>
+      </div>
+
+      <div class="thread">
+        <div class="daymark">Hoy</div>
+
+        <div class="msg msg--in">
+          Buenos días ☀️ ¿Ya desayunaste?
+          <span class="msg__meta">09:12</span>
+        </div>
+
+        <div class="msg msg--in">
+          Ayer olvidé las llaves en tu casa, ¿las encontraste?
+          <span class="msg__meta">09:13</span>
+        </div>
+
+        <div class="msg msg--out">
+          Sí, café y tostadas. Voy para allá en un rato.
+          <span class="msg__meta">09:20<span class="ticks">✓✓</span></span>
+        </div>
+
+        <div class="msg msg--in">
+          El paquete llegó esta mañana. ¿Puedes pasar a recogerlo antes de las siete?
+          <span class="msg__meta">09:41</span>
+        </div>
+
+        <div class="msg msg--out">
+          Claro, salgo del trabajo a las seis.
+          <span class="msg__meta">09:44<span class="ticks">✓✓</span></span>
+        </div>
+
+        <div class="msg msg--in">
+          Perfecto. Está en la portería, solo di mi nombre y el número de piso.
+          <span class="msg__meta">09:45</span>
+        </div>
+
+        <div class="msg msg--out">
+          ¿Y si no estás? Te llamo cuando llegue 📞
+          <span class="msg__meta">09:47<span class="ticks">✓✓</span></span>
+        </div>
+
+        <div class="msg msg--in">
+          Sin problema, estaré en casa toda la tarde.
+          <span class="msg__meta">09:48</span>
+        </div>
+      </div>
+
+      <div class="composer">
+        <span class="composer__icon">☺</span>
+        <span class="composer__icon">＋</span>
+        <div class="composer__field">Escribe un mensaje</div>
+        <span class="composer__icon">🎤</span>
+      </div>
+    </div>
+  </body>
+</html>

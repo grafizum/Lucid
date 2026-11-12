@@ -1,0 +1,43 @@
+# Android
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/app/release/
+android/local.properties
+android/.idea/
+*.iml
+*.apk
+*.aab
+!screenshots/
+
+# Desktop prototype
+desktop/node_modules/
+desktop/screenshots/_selftest/
+desktop/screenshots/_sight-crop.png
+desktop/src/renderer/stage-whatsapp.png
+
+# Captures, mockups and listing art stay local for now — nothing that could
+# show a real conversation goes into the repository or its README.
+/screenshots/
+/icon/
+/design/**/*.png
+/design/**/*.jpg
+/design/**/*.jpeg
+/store-listing/**/*.png
+/store-listing/**/*.jpg
+/store-listing/**/*.jpeg
+/desktop/**/*.png
+/desktop/**/*.jpg
+
+# Working material and local tool state, not published
+.freebuff/
+.wrangler/
+.idea/
+store-listing/raw/
+store-listing/_to_delete/
+store-listing/video/
+
+# OS
+.DS_Store
+Thumbs.db

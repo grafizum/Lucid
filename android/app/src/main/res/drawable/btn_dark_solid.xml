@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A real button on the dark setup sheet: paper, not a hairline. The sheet's
+     old chip was 7% white on a charcoal card, which read as floating words
+     rather than something you press. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/cream_50" />
+    <corners android:radius="999dp" />
+</shape>

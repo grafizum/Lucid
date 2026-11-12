@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The slide's direction: a level arrow, not the ↗ the old tap button used. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18dp"
+    android:height="18dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M5.6,12 L18,12 M12.4,6.4 L18,12 L12.4,17.6"
+        android:strokeWidth="1.7"
+        android:strokeColor="@color/cream_50"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
