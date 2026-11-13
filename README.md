@@ -48,6 +48,10 @@ Lucid is not a split-screen translator and not a screenshot tool. It is a small 
 - **Look mode (optional)** — when a surface has no text in the tree (a photo, a video frame, a game), it can OCR one still frame instead.
 - **Quick-settings tile** — start and stop the lens from the shade, without opening the app.
 
+## 📲 Coming to Google Play
+
+Lucid is being tested right now and is heading to Google Play next — the store listing is in preparation, and the build is going through testing before it opens to everyone. Until it is live there, the APK in the next section is the way to install it.
+
 ## 📦 Install
 
 Grab **`Lucid-1.0-debug.apk`** from the [latest release](https://github.com/grafizum/Lucid/releases/latest) (67 MB, arm64 + x86_64), open it on the phone, or with a USB cable:
