@@ -6,7 +6,7 @@
 
 **A floating lens for Android that reads whatever sits under it and translates it in place — in any app, with no screen recording and no per-app setup.**
 
-[![Release](https://img.shields.io/github/v/release/MatrixZockt/Lucid-ScreenTranslator?label=release)](https://github.com/MatrixZockt/Lucid-ScreenTranslator/releases/latest)
+[![Release](https://img.shields.io/github/v/release/grafizum/Lucid-ScreenTranslator?label=release)](https://github.com/grafizum/Lucid-ScreenTranslator/releases/latest)
 [![Platform](https://img.shields.io/badge/platform-Android%208.0%2B-3ddc84)](#-install)
 [![Build](https://img.shields.io/badge/build-debug%20%C2%B7%20v1.0.0-e0a94f)](#-install)
 [![Engine](https://img.shields.io/badge/engine-online%20%2B%20on--device-6f9f86)](#-translation-engine)
@@ -48,7 +48,7 @@ Lucid is not a split-screen translator and not a screenshot tool. It is a small 
 
 ## 📦 Install
 
-Grab **`Lucid-1.0-debug.apk`** from the [latest release](https://github.com/MatrixZockt/Lucid-ScreenTranslator/releases/latest) (67 MB, arm64 + x86_64), open it on the phone, or with a USB cable:
+Grab **`Lucid-1.0-debug.apk`** from the [latest release](https://github.com/grafizum/Lucid-ScreenTranslator/releases/latest) (67 MB, arm64 + x86_64), open it on the phone, or with a USB cable:
 
 ```bash
 adb install -r Lucid-1.0-debug.apk
@@ -136,7 +136,7 @@ Some surfaces (images, games, video, apps that hide their text) have nothing in 
 Requirements: JDK 17, Android SDK with platform 36 and build-tools 36, and network access for the first Gradle run.
 
 ```bash
-git clone https://github.com/MatrixZockt/Lucid-ScreenTranslator.git
+git clone https://github.com/grafizum/Lucid-ScreenTranslator.git
 cd Lucid-ScreenTranslator/android
 echo "sdk.dir=$HOME/Android/Sdk" > local.properties   # your SDK path
 ./gradlew assembleDebug
@@ -197,6 +197,10 @@ The Play Store listing needs a public privacy policy, so the app's legal pages l
 - https://lucid.grafizum.com/terms — terms of use, Swiss law
 
 © 2026 Grafizum. The source is published so that you can read it, build it and install it for yourself; it is not released under an open-source licence and is not licensed for redistribution. The name, the design and the code stay ours — the full terms are at [lucid.grafizum.com/terms](https://lucid.grafizum.com/terms). Open-source components bundled with the app remain under their own licences.
+
+## 🤝 Working on this repository
+
+`main` is protected: nothing lands on it without a pull request that **grafizum** has approved. Branches are pushed from a fork or a topic branch, the PR gets one approving review (a new push dismisses an old approval), and merged history stays linear.
 
 ## 🖥 The desktop prototype
 
