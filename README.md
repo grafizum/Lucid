@@ -6,6 +6,8 @@
 
 **A floating lens for Android that reads whatever sits under it and translates it in place — in any app, with no screen recording and no per-app setup.**
 
+<sub>A <a href="https://github.com/grafizum">Grafizum</a> studio product</sub>
+
 [![Release](https://img.shields.io/github/v/release/grafizum/Lucid-ScreenTranslator?label=release)](https://github.com/grafizum/Lucid-ScreenTranslator/releases/latest)
 [![Platform](https://img.shields.io/badge/platform-Android%208.0%2B-3ddc84)](#-install)
 [![Build](https://img.shields.io/badge/build-debug%20%C2%B7%20v1.0.0-e0a94f)](#-install)
