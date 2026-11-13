@@ -4,7 +4,7 @@
 
 # Lucid
 
-**A floating lens for Android that reads whatever sits under it and translates it in place — in any app, with no screen recording and no per-app setup.**
+**An Android screen translator.** A floating lens reads whatever sits under it and translates it in place — in any app, with no screen recording and no per-app setup.
 
 <sub>A <a href="https://github.com/grafizum">Grafizum</a> studio product</sub>
 
